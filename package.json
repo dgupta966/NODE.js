@@ -1,0 +1,13 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "node.js learnings",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "author": "Deepak Gupta",
+  "license": "ISC"
+}
