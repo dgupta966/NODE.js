@@ -3,13 +3,25 @@
 const express = require("express");
 
 const app = express();
-
+/*
 app.use((req, res, next) => {
   console.log("In the middleware");
   next(); // next allows request to continue on next middleware
 }); // 'use' allows us to add middleware functions
 
-app.use((req, res, next) => {
+*/ // https://expressjs.com/en/4x/api.html#app.use
+
+app.use("/", (req, res, next) => {
+  console.log("this always runs");
+  next();
+});
+
+app.use("/add-product", (req, res, next) => {
+  console.log("In the Add product page middleware");
+  res.send("<h1>Add product page!</h1>");
+});
+
+app.use("/", (req, res, next) => {
   console.log("In the another middleware");
   //   res.setHeader(); we can override this also
   res.send("<h1>Hello from express!</h1>");
