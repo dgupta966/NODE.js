@@ -2,6 +2,9 @@
 
 const express = require("express");
 
+const adminRoutes = require("./routes/admin");
+const shopRoutes = require("./routes/shop");
+
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -20,24 +23,9 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/add-product", (req, res, next) => {
-  // console.log("In the Add product page middleware");
-  res.send(
-    "<form action='/products' method='POST'><input type='text' name='title' /><button type='submit'>Add products</button></form>"
-  );
-});
+app.use(adminRoutes);
 
-app.post("/products", (req, res, next) => {
-  console.log(req.body);
-  res.redirect("/");
-});
-
-app.use("/", (req, res, next) => {
-  // console.log("In the another middleware");
-  //   res.setHeader(); we can override this also
-  res.send("<h1>Hello from express!</h1>");
-  // https://github.com/expressjs/express/blob/master/lib/response.js
-});
+app.use(shopRoutes);
 
 // const server = http.createServer(app);
 
